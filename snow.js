@@ -2,24 +2,41 @@
 
 class SnowCanvas {
     constructor() {
+        // Maybe we should take a config here to define things like snowflake limit etc?
         this.canvas = document.createElement('canvas');
-        this.ctx = canvas.getContext('2d');
+        this.ctx = this.canvas.getContext('2d');
+        this.snowFlakes = [];
+        this.boundUpdate = this.update.bind( this );
+
+        document.body.appendChild( this.canvas );
 
         window.addEventListener( 'resize', _ => this.resizeHandler() );
 
         this.resizeHandler();
-        this.boundUpdate = this.update.bind( this );
 
-        requestAnimationFrame( this.update );
+        requestAnimationFrame( this.boundUpdate );
     }
 
     resizeHandler() {
         this.canvas.height = window.innerHeight;
         this.canvas.height = window.innerWidth;
+
+        this.createSnowflakes();
     }
 
     update() {
-        requestAnimationFrame( this.update );
+        // Update each snowflake here
+        requestAnimationFrame( this.boundUpdate );
+    }
+
+    createSnowflakes() {
+        this.snowFlakes = [];
+        const numFlakes = window.innerWidth / 2;
+        for ( let i = 0; i < numFlakes; i++ ) {
+            this.snowFlakes.push( new Snowflake() );
+        }
+
+        console.log(this.snowFlakes);
     }
 
 }
