@@ -4,19 +4,18 @@ class SnowCanvas {
         this.ctx = this.canvas.getContext('2d');
         this.snowFlakes = [];
         this.boundUpdate = this.update.bind( this );
+        this.resizeTimer;
 
         document.body.appendChild( this.canvas );
 
-        window.addEventListener( 'resize', _ => this.resizeHandler() );
+        window.addEventListener( 'resize', _ => this.resize() );
 
-        this.resizeHandler();
-
+        this.resize();
         requestAnimationFrame( this.boundUpdate );
         this.createSnowflakes();
     }
 
-    // Ideally this needs debounced so it waits N ms after the last resize event
-    resizeHandler() {
+    resize() {
         this.height = window.innerHeight;
         this.width = window.innerWidth;
         this.canvas.height = this.height;
