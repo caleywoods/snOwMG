@@ -1,4 +1,3 @@
-// could also do an IIFE here
 class SnowCanvas {
     constructor() {
         this.canvas = document.createElement('canvas');
@@ -41,22 +40,18 @@ class SnowCanvas {
                 this.ctx.restore();
             });
         }
+
         requestAnimationFrame( this.boundUpdate );
     }
 
     createSnowflakes() {
-        console.log('creating snowflakes');
-        this.snowFlakes = [];
-        const numFlakes = Math.ceil( window.innerWidth / 2 );
-        for ( let i = 0; i < numFlakes; i++ ) {
+        for ( let i = 0; i < window.innerWidth; i++ ) {
             this.snowFlakes.push( new Snowflake() );
         }
     }
-
 }
 
 class Snowflake{
-    // need width/height of the arc/circle/flurry and vertical and horizontal velocity
     constructor() {
         this.alpha = 0;
         this.radius = 0;
@@ -65,7 +60,6 @@ class Snowflake{
         this.x = 0;
         this.y = 0;
 
-        // actually make the flakes...who knew.
         this.reset();
     }
 
