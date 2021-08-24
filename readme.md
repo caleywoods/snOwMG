@@ -2,4 +2,4 @@
 
 This is a simple example of snow flurries using HTML canvas
 
-![GIF Example](https://i.imgur.com/djujZOS.mp4)
+![GIF Example](2021-08-24_16-03-26.gif)
